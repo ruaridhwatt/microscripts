@@ -9,6 +9,7 @@ declare -a ALL_SERVICE_FILES=(
 INSTALL=false
 UNINSTALL=false
 STATUS=false
+RESTART=false
 ALL=false
 declare -a SERVICE_FILES=()
 
@@ -33,6 +34,14 @@ uninstall_services () {
   done
 }
 
+restart_services () {
+  for f in "${SERVICE_FILES[@]}"
+  do
+    systemctl restart "$(basename "$f")"
+  done
+  systemctl daemon-reload
+}
+
 service_status () {
   for f in "${SERVICE_FILES[@]}"
   do
@@ -41,7 +50,7 @@ service_status () {
 }
 
 print_help () {
-  echo "microscripts [-i|--install] [-u|--uninstall] [-s|--status] <[<-a|--all> | service_file...]>"
+  echo "microscripts [-i|--install] [-u|--uninstall] [-s|--status] [-r|--restart] <[<-a|--all> | service_file...]>"
 }
 
 for i in "$@"; do
@@ -60,6 +69,9 @@ for i in "$@"; do
               ;;
           -s|--status)
               STATUS=true
+              ;;
+          -r|--restart)
+              RESTART=true
               ;;
           -a|--all)
               ALL=true
@@ -88,6 +100,9 @@ then
 elif $STATUS
 then
   service_status
+elif $RESTART
+then
+  restart_services
 else
   print_help
 fi
