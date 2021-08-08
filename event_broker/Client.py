@@ -95,11 +95,15 @@ class Client:
         self.__logger.info(f'Rx {event_handler.event_type.__name__}:\n{pformat(event_dict)}\n')
         event_handler.callback(self, event)
 
-    def idle(self, seconds):
+    def idle(self, seconds: int):
+        for _ in range(seconds):
+            self.__idle_1s()
+
+    def __idle_1s(self):
         start = time.time()
-        self.__client.loop(seconds)
+        self.__client.loop(1)
         elapsed = time.time() - start
-        remainder = max(seconds - elapsed, 0)
+        remainder = max(1 - elapsed, 0)
         time.sleep(remainder)
 
     def listen(self):
