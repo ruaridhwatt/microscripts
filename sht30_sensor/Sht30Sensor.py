@@ -1,6 +1,8 @@
 import adafruit_sht31d
 import board
 
+from sht30_sensor.SensorReadError import SensorReadError
+
 
 class Sht30Sensor:
     def __init__(self):
@@ -8,8 +10,14 @@ class Sht30Sensor:
 
     @property
     def temperature(self) -> float:
-        return self.sensor.temperature
+        try:
+            return self.sensor.temperature
+        except Exception as e:
+            raise SensorReadError(str(e))
 
     @property
     def humidity(self) -> float:
-        return self.sensor.relative_humidity
+        try:
+            return self.sensor.relative_humidity
+        except Exception as e:
+            raise SensorReadError(str(e))
