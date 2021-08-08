@@ -51,7 +51,7 @@ class Client:
                 qos=quality_of_service,
                 retain=retain
             )
-            self.__logger.info(f'Tx {type(event).__name__}:\n{pformat(event_dict)}Result: {result}\n')
+            self.__logger.info(f'Tx {type(event).__name__}:\n{pformat(event_dict)}\nResult: {result}\n')
         except Exception as e:
             self.__logger.error(str(e))
 
@@ -92,8 +92,8 @@ class Client:
         event_handler = self.__subscriptions[message.topic]
         event_dict = json.loads(message.payload)
         event = event_handler.event_type(**event_dict)
-        event_handler.callback(self, event)
         self.__logger.info(f'Rx {event_handler.event_type.__name__}:\n{pformat(event_dict)}\n')
+        event_handler.callback(self, event)
 
     def idle(self, seconds):
         start = time.time()
