@@ -1,0 +1,11 @@
+[Unit]
+Description=SHT 30 sensor reading service
+After=network.target
+
+[Service]
+ExecStart=python main.py
+WorkingDirectory=/home/pi/microscripts/sht30_sensor_reader
+User=rw
+
+[Install]
+WantedBy=multi-user.target

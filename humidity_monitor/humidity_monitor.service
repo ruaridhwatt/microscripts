@@ -1,0 +1,11 @@
+[Unit]
+Description=Humidity monitoring service
+After=network.target
+
+[Service]
+ExecStart=python main.py
+WorkingDirectory=/home/pi/microscripts/humidity_monitor
+User=rw
+
+[Install]
+WantedBy=multi-user.target

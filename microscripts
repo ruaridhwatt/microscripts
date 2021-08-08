@@ -1,0 +1,87 @@
+#!/bin/bash
+
+declare -a ALL_SERVICE_FILES=(
+"sht30_sensor_reader/sht30_sensor_reader.service"
+"humidity_monitor/humidity_monitor.service"
+"water_valve_request_monitor/water_valve_request_monitor.service"
+)
+
+INSTALL=false
+UNINSTALL=false
+STATUS=false
+ALL=false
+declare -a SERVICE_FILES=()
+
+install_services () {
+  for f in "${SERVICE_FILES[@]}"
+  do
+    cp "$f" /etc/systemd/system/
+    systemctl enable "$(basename "$f")"
+    systemctl start "$(basename "$f")"
+  done
+  systemctl daemon-reload
+}
+
+uninstall_services () {
+  for f in "${SERVICE_FILES[@]}"
+  do
+    systemctl stop "$(basename "$f")"
+    systemctl disable "$(basename "$f")"
+    rm "/etc/systemd/system/$(basename "$f")"
+    systemctl daemon-reload
+    systemctl reset-failed
+  done
+}
+
+service_status () {
+  for f in "${SERVICE_FILES[@]}"
+  do
+    systemctl status "$(basename "$f")"
+  done
+}
+
+for i in "$@"; do
+    if [[ "$i" == -* ]]
+    then
+      case $i in
+          -h|--help)
+              echo "microscripts [-i|--install] [-u|--uninstall] [-s|--status] <[<-a|--all> | service_file...]>"
+              exit 0
+              ;;
+          -i|--install)
+              INSTALL=true
+              ;;
+          -u|--uninstall)
+              UNINSTALL=true
+              ;;
+          -s|--status)
+              STATUS=true
+              ;;
+          -a|--all)
+              ALL=true
+              ;;
+          *)
+              echo "Unrecognized option. See --help"
+              exit 1
+              ;;
+      esac
+    else
+          SERVICE_FILES+=("$i")
+    fi
+done
+
+if $ALL
+then
+  SERVICE_FILES=("${ALL_SERVICE_FILES[@]}")
+fi
+
+if $INSTALL
+then
+  install_services
+elif $UNINSTALL
+then
+  uninstall_services
+elif $STATUS
+then
+  service_status
+fi

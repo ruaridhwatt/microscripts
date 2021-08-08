@@ -1,0 +1,2 @@
+class WaterValveError(Exception):
+    pass

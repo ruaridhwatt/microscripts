@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitors requests to open the water valve and decides whether to open it or not.
+After=network.target
+
+[Service]
+ExecStart=python main.py
+WorkingDirectory=/home/pi/microscripts/water_valve_request_monitor
+User=rw
+
+[Install]
+WantedBy=multi-user.target

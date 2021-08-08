@@ -1,0 +1,1 @@
+from sht30_sensor_reader.SensorReading import SensorReading
