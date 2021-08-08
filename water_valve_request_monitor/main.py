@@ -5,7 +5,7 @@ from humidity_monitor import OpenWaterValveRequest
 from water_valve import WaterValve, WaterValveError
 from water_valve_request_monitor import WaterValveOpenedEvent, OpenWaterValveRequestDenied
 
-MIN_TIME_BETWEEN_OPENING_WATER_VALVE = timedelta(minutes=5)
+MIN_TIME_BETWEEN_OPENING_WATER_VALVE = timedelta(minutes=10)
 
 water_valve = WaterValve()
 last_opened_time = datetime(2011, 1, 1).astimezone()
