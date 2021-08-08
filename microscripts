@@ -4,6 +4,7 @@ declare -a ALL_SERVICE_FILES=(
 "sht30_sensor_reader/sht30_sensor_reader.service"
 "humidity_monitor/humidity_monitor.service"
 "water_valve_request_monitor/water_valve_request_monitor.service"
+"firestore/firestore.service"
 )
 
 INSTALL=false

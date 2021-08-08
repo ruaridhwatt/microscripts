@@ -2,3 +2,4 @@
 venv
 microscripts.log*
 *.egg-info
+.DS_Store

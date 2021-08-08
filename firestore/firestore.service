@@ -1,0 +1,11 @@
+[Unit]
+Description=Upload events to google cloud firestore
+After=network.target
+
+[Service]
+ExecStart=/home/pi/microscripts/venv/bin/python main.py
+WorkingDirectory=/home/pi/microscripts/firestore
+User=pi
+
+[Install]
+WantedBy=multi-user.target
