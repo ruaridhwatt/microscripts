@@ -40,12 +40,16 @@ service_status () {
   done
 }
 
+print_help () {
+  echo "microscripts [-i|--install] [-u|--uninstall] [-s|--status] <[<-a|--all> | service_file...]>"
+}
+
 for i in "$@"; do
     if [[ "$i" == -* ]]
     then
       case $i in
           -h|--help)
-              echo "microscripts [-i|--install] [-u|--uninstall] [-s|--status] <[<-a|--all> | service_file...]>"
+              print_help
               exit 0
               ;;
           -i|--install)
@@ -84,4 +88,6 @@ then
 elif $STATUS
 then
   service_status
+else
+  print_help
 fi
