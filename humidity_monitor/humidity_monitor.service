@@ -5,7 +5,7 @@ After=network.target
 [Service]
 ExecStart=/home/pi/microscripts/venv/bin/python main.py
 WorkingDirectory=/home/pi/microscripts/humidity_monitor
-User=rw
+User=pi
 
 [Install]
 WantedBy=multi-user.target

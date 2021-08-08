@@ -5,7 +5,7 @@ After=network.target
 [Service]
 ExecStart=/home/pi/microscripts/venv/bin/python main.py
 WorkingDirectory=/home/pi/microscripts/${module_name}
-User=${user}
+User=pi
 
 [Install]
 WantedBy=multi-user.target
