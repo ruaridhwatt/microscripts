@@ -1,1 +1,2 @@
-from humidity_monitor.OpenWaterValveRequest import OpenWaterValveRequest
+from humidity_monitor.LowHumidity import LowHumidity
+from humidity_monitor.HumidityAlarm import HumidityAlarm

@@ -1,7 +1,7 @@
 from event_broker import Event, EventField
 
 
-class ErrorEvent(Event):
+class Error(Event):
     topic = 'ErrorEvents'
 
     def __init__(self, error_message: EventField, **kwargs):

@@ -1,1 +1,2 @@
-from sht30_sensor_reader.SensorReading import SensorReading
+from sht30_sensor_reader.TemperatureChanged import TemperatureChanged
+from sht30_sensor_reader.HumidityChanged import HumidityChanged

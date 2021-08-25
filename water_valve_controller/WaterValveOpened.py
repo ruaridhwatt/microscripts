@@ -1,7 +1,7 @@
 from event_broker import Event, EventField
 
 
-class WaterValveOpenedEvent(Event):
+class WaterValveOpened(Event):
     topic = 'WaterValveOpenedEvents'
 
     def __init__(self, time_seconds: EventField, **kwargs):

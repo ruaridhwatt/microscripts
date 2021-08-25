@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitors events which may trigger watering and decides whether to open water valve or not.
+After=network.target
+
+[Service]
+ExecStart=/home/pi/microscripts/venv/bin/python main.py
+WorkingDirectory=/home/pi/microscripts/water_valve_controller
+User=pi
+
+[Install]
+WantedBy=multi-user.target
