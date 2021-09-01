@@ -55,6 +55,13 @@ class Client:
         except Exception as e:
             self.__logger.error(str(e))
 
+    def idle(self, seconds: int):
+        for _ in range(seconds):
+            self.__idle_1s()
+
+    def listen(self):
+        self.__client.loop_forever()
+
     def __subscribe(self, event_type: Type[Event]):
         self.__logger.info(f'Subscribing to {event_type.topic}')
         result, message_id = self.__client.subscribe(event_type.topic, self.__quality_of_service)
@@ -95,16 +102,9 @@ class Client:
         self.__logger.info(f'Rx {event_handler.event_type.__name__}:\n{pformat(event_dict)}\n')
         event_handler.callback(self, event)
 
-    def idle(self, seconds: int):
-        for _ in range(seconds):
-            self.__idle_1s()
-
     def __idle_1s(self):
         start = time.time()
         self.__client.loop(1)
         elapsed = time.time() - start
         remainder = max(1 - elapsed, 0)
         time.sleep(remainder)
-
-    def listen(self):
-        self.__client.loop_forever()

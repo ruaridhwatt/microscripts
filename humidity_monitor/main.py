@@ -3,8 +3,8 @@ from humidity_monitor.HumidityAlarm import HumidityAlarm
 from humidity_monitor.LowHumidity import LowHumidity
 from sht30_sensor_reader import HumidityChanged
 
-MIN_HUMIDITY_PERCENT = 70
-HUMIDITY_ALARM_PERCENT = 65
+MIN_HUMIDITY_PERCENT = 75
+HUMIDITY_ALARM_PERCENT = 70
 WATER_TIME_SECONDS = 6
 
 
