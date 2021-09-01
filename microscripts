@@ -1,10 +1,10 @@
 #!/bin/bash
 
 declare -a ALL_SERVICE_FILES=(
-"sht30_sensor_reader/sht30_sensor_reader.service"
-"humidity_monitor/humidity_monitor.service"
-"water_valve_controller/water_valve_controller.service"
 "firestore/firestore.service"
+"water_valve_controller/water_valve_controller.service"
+"humidity_monitor/humidity_monitor.service"
+"sht30_sensor_reader/sht30_sensor_reader.service"
 )
 
 INSTALL=false
