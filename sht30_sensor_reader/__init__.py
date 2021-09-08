@@ -1,2 +1,0 @@
-from sht30_sensor_reader.TemperatureChanged import TemperatureChanged
-from sht30_sensor_reader.HumidityChanged import HumidityChanged
