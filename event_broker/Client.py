@@ -55,6 +55,17 @@ class Client:
         except Exception as e:
             self.__logger.error(str(e))
 
+    def clear_retained_message(self, topic: str):
+        try:
+            result = self.__client.publish(
+                topic=topic,
+                payload=None,
+                retain=True
+            )
+            self.__logger.info(f'Retained message removed for topic "{topic}"\nResult: {result}\n')
+        except Exception as e:
+            self.__logger.error(str(e))
+
     def idle(self, seconds: int):
         for _ in range(seconds):
             self.__idle_1s()
